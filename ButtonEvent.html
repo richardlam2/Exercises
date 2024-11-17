@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Header</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="title">
+            <a>The Button</a>
+        </div>
+        <div class="below">
+            <button onclick="addClick()" type="button" class="btn btn-success">CLICK</button>
+            <input type="number" id="adding" value="0", size="1">
+        </div>
+        <div class="below" id="17">
+            0
+        </div>
+        <script>
+            var num = 0;
+            function addClick() {
+                document.getElementById("adding").value = num++;
+                document.getElementById("17").innerHTML = num++;
+            }
+        </script>
+    </body>
+</html>
+
+<style>
+    .title {
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+    }
+
+    .below {
+        display: flex;
+        justify-content: center;
+    }
+
+    .adding {
+        display: flex;
+        justify-content: right;
+    }
+</style>
