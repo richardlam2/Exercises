@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Header</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="title">
+            <a>Friends' Birthday and Cars</a>
+        </div>
+        <table class="center">
+            <tr> <!--table row-->
+                <th class="text-center" style="width: 25%;">Name</th> <!--table header-->
+                <th class="text-center" style="width: 25%;">Birthday</th>
+                <th class="text-center" style="width: 50%;">Car</th>
+            </tr>
+            <tr>
+                <td style="color: red;"><strong>John</strong></td> <!--table data-->
+                <td>12/2001</td>
+                <td>2021 Honda Civic Type R</td>
+            </tr>
+            <tr>
+                <td><em>Richard</em></td>
+                <td>08/2002</td>
+                <td>2024 BMW M340i</td>
+            </tr>
+            <tr>
+                <td>Andy</td>
+                <td>02/2002</td>
+                <td>2023 Toyota Camry</td>
+            </tr>
+            <tr>
+                <td>Thomas</td>
+                <td>06/2002</td>
+                <td><a href="https://www.tesla.com/">2024 Tesla Model 3</a></td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+<style>
+    .title {
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+    }
+
+    body {
+        background-color: lightblue;
+    }
+
+    table, th, td {
+        border: 2px solid black;
+        font-size: 20px;
+    }
+
+    table.center {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2%;
+    }
+</style>
