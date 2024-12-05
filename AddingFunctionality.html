@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Header</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="title">
+            <a>Friends' Birthday and Cars</a>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-5">
+                    <div>
+                        <label for="nameInput" class="col-3">Name: </label>
+                        <input type="text" style="width: 220px; display: inline;" id="nameInput" placeholder="First Name" class="form-control">
+                    </div>
+                    <div>
+                        <label for="dateInput" class="col-3">Birthday: </label>
+                        <input type="text" style="width: 220px; display: inline;" id="dateInput" placeholder="# of Month/Year" class="form-control">
+                    </div>
+                    <div>
+                        <label for="carInput" class="col-3">Car: </label>
+                        <input type="text" style="width: 220px; display: inline;" id="carInput" placeholder="Enter the Year Make Model" class="form-control">
+                    </div>
+
+                    <button id="addRowButton" class="btn btn-primary" style="float: inline-end;">Submit</button>
+                </div>
+                <div>
+                
+                </div>
+                <div class="col-7">
+                    <table id="dataTable" class="table table-bordered">
+                        <thead class="table table-dark">
+                            <tr>
+                                <th class="w-25">Name</th>
+                                <th class="w-25">Birth Date</th>
+                                <th class="w-25">Car</th>
+                                <th class="w-25">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            fetch('data.json')
+            document.getElementById('addRowButton').addEventListener('click', () => { //ADDING PEOPLE
+                const name = document.getElementById('nameInput').value;
+                const date = document.getElementById('dateInput').value;
+                const car = document.getElementById('carInput').value;
+
+                const lastChild = document.querySelector('#dataTable tbody').lastElementChild;
+                lastChild.style.backgroundColor ='white';
+
+                if(name && date && car) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<tr>
+                            <td>${name}</td>
+                            <td>${date}</td>
+                            <td>${car}</td>
+                            <td class="text-center"><button class="btn btn-danger" onclick="this.parentNode.parentNode.remove(), alert('${name} has been deleted!')">X</button></td>
+                        </tr>`;
+                    document.querySelector('#dataTable tbody').appendChild(row);
+                    
+                    document.getElementById('nameInput').value = '';
+                    document.getElementById('dateInput').value = '';
+                    document.getElementById('carInput').value = '';
+                    const lastChild = document.querySelector('#dataTable tbody').lastElementChild;
+                    lastChild.style.backgroundColor ='lightcoral';
+                }
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    </body>
+</html>
+
+<script>
+    let friendData = [];
+    fetch('data.json').then(res => res.json())
+        .then(jsonData => {
+            friendData = jsonData;
+
+            for(let i=0; i<friendData.length; i++) {
+                
+                let friendObject = 
+                    `<tr>
+                        <td>${friendData[i].name}</td>
+                        <td>${friendData[i].date}</td>
+                        <td>${friendData[i].car}</td>
+                        <td class="text-center"><button class="btn btn-danger" onclick="deleteFriend('${friendData[i].name}', this)" style="float">X</button></td>
+                    </tr>`
+                document.querySelector('tbody').innerHTML += friendObject;
+            }
+            const lastChild = document.querySelector('#dataTable tbody').lastElementChild;
+            if(lastChild) {
+                lastChild.style.backgroundColor = 'lightcoral';
+            }
+        });
+
+    const deleteFriend = (friendName, thisObject) => {
+        alert(`${friendName} has been deleted!`);
+        thisObject.parentNode.parentNode.remove();
+
+        let allRows = document.querySelectorAll('#dataTable tr');
+        let lastRow = allRows[allRows.length - 1];
+        if (allRows.length !== 1) {
+            lastRow.style.backgroundColor = "lightcoral";
+        }
+   }
+</script>
+
+<style>
+    .title {
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+    }
+    body {
+        background-color: lightblue;
+    }
+    table, th, td, thead, tr{
+        font-size: 20px;
+    }
+    tbody {
+        background-color: white;
+    }
+    tr:hover {
+        color:gold;
+        font-weight: bold;
+    }
+    .row {
+        margin-top: 2%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .addButton {
+        margin-top: 15px;
+    }
+</style>

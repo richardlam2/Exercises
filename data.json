@@ -1,0 +1,22 @@
+[
+    {
+        "name": "John",
+        "date": "12/2001",
+        "car": "2024 Honda Civic Type R"
+    },
+    {
+        "name": "Richard",
+        "date": "08/2002",
+        "car": "2024 BMW M340i"
+    },
+    {
+        "name": "Andy",
+        "date": "02/2002",
+        "car": "2023 Toyota Camry"
+    },
+    {
+        "name": "Thomas",
+        "date": "06/2002",
+        "car": "2024 Tesla Model 3"
+    }
+]
